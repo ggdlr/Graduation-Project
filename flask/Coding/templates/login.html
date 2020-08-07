@@ -1,0 +1,112 @@
+<!-- {% import "macro/forms.html" as cm with context %} -->
+{% extends "base.html" %}
+
+{% block main %}
+
+<div class="view full-page-intro">
+
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+      <!-- Content -->
+      <div class="container">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4 white-text text-center text-md-left">
+
+            <h1 class="display-4 font-weight-bold">Make your own development environment</h1>
+
+            <hr class="hr-light">
+
+            <p>
+              <strong>Without using your computer resources</strong>
+            </p>
+
+            <p class="mb-4 d-none d-md-block">
+              <strong>You are able to run your code in this website. You can share your own environment with your colleague or students. Create your own code and make your own development environment.</strong>
+            </p>
+
+            <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-indigo btn-lg">Start Coding
+              <i class="fas fa-graduation-cap ml-2"></i>
+            </a>
+
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-6 col-xl-5 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+              <!--Card content-->
+              <div class="card-body">
+                <!-- Default form login -->
+                <form class="text-center border border-light p-5" action="#!">
+
+                  <p class="h4 mb-4">Sign in</p>
+
+                  <!-- Email -->
+                  <input type="text" id="loginID" class="form-control mb-4" placeholder="ID">
+
+                  <!-- Password -->
+                  <input type="password" id="loginPassword" class="form-control mb-4" placeholder="Password">
+
+                  <div class="d-flex justify-content-around">
+                      <div>
+                          <!-- Remember me -->
+                          <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                              <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                          </div>
+                      </div>
+                      <div>
+                          <!-- Forgot password -->
+                          <a href="">Forgot password?</a>
+                      </div>
+                  </div>
+
+                  <!-- Sign in button -->
+                  <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+                  <!-- Register -->
+                  <p>Not a member?
+                    <!-- <button type="button" onclick="register()">Register</button> -->
+                    <a href="http://localhost:5000/register">Register</a>
+                  </p>
+
+                  <!-- Social login -->
+                  <p>or sign in with:</p>
+
+                  <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+                  <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+                  <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+                  <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+
+                </form>
+                <!-- Default form login -->
+                
+
+              </div>
+
+            </div>
+            <!--/.Card-->
+
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+      </div>
+      <!-- Content -->
+
+    </div>
+    <!-- Mask & flexbox options-->
+
+  </div>
+
+{% endblock %}

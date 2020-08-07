@@ -1,19 +1,26 @@
 from flask import Flask, g, render_template, Markup
 
 app = Flask(__name__)
-# app.debug = True
+app.debug = True
 # app.jinja_env.trim.blocks = True
 
 
 
 @app.route('/')
 def mainDisplay():
-    return render_template('main.html')
+    return render_template('login.html')
 
 @app.route('/register')
 def registerPage():
     return render_template('register.html')
 
+@app.route('/create')
+def createPage():
+    return render_template('create.html')
+
+@app.route('/editor')
+def editorPage():
+    return render_template('editor.html')
 # @app.before_request
 
 # def before_request():

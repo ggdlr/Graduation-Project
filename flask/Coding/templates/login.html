@@ -29,13 +29,46 @@
               <strong>You are able to run your code in this website. You can share your own environment with your colleague or students. Create your own code and make your own development environment.</strong>
             </p>
 
-            <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-indigo btn-lg">Start Coding
+            <a href="https://localhost:5000/create" class="btn btn-indigo btn-lg">Start Coding
               <i class="fas fa-graduation-cap ml-2"></i>
             </a>
 
           </div>
           <!--Grid column-->
+          <script>
+            function checkLogin(){
+              var uid = get('loginID')
+                  upw = get('loginPassword')
+              console.log(">>>>>>", uid, upw)
 
+              var loginForm = document.getElementById('loginForm');
+                  msg = document.getElementById('msg');
+                  err = document.getElementById('err');
+              if (uid === 'a' && upw === '1'){
+                loginForm.style.display = 'none';
+                msg.style.display = 'block';
+                err.style.display = 'none';
+              }
+              else{
+                loginForm.style.display = 'block';
+                err.style.display = 'block';
+              }
+
+              return false;
+            }
+
+            function displayRegister(){
+              var registerForm = document.getElementById('registerForm');
+                  loginForm = document.getElementById('loginForm');
+                  // msg = document.getElementById('msg');
+              registerForm.style.display = 'block';
+              loginForm.style.display = 'none';
+              // msg.style.display = 'none';
+            }
+            function get(id){
+              return document.getElementById(id).value;
+            }
+          </script>
           <!--Grid column-->
           <div class="col-md-6 col-xl-5 mb-4">
 
@@ -45,11 +78,11 @@
               <!--Card content-->
               <div class="card-body">
                 <!-- Default form login -->
-                <form class="text-center border border-light p-5" action="#!">
+                <form id="loginForm" class="text-center border border-light p-5" onsubmit="return checkLogin()" method="post">
 
                   <p class="h4 mb-4">Sign in</p>
 
-                  <!-- Email -->
+                  <!-- Id -->
                   <input type="text" id="loginID" class="form-control mb-4" placeholder="ID">
 
                   <!-- Password -->
@@ -70,12 +103,12 @@
                   </div>
 
                   <!-- Sign in button -->
-                  <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+                  <button class="btn btn-info btn-block my-4">Sign in</button>
 
                   <!-- Register -->
                   <p>Not a member?
                     <!-- <button type="button" onclick="register()">Register</button> -->
-                    <a href="http://localhost:5000/register">Register</a>
+                    <a style="color:deepskyblue" onclick=displayRegister()>Register</a> <!--href="http://localhost:5000/register"-->
                   </p>
 
                   <!-- Social login -->
@@ -87,6 +120,56 @@
                   <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
 
                 </form>
+                <!-- register form -->
+                <form id="registerForm" class="text-center border border-light p-5" action="#!" style='display: none'>
+
+                  <p class="h4 mb-4">Sign up</p>
+              
+                  <div class="form-row mb-4">
+                      <div class="col">
+                          <!-- First name -->
+                          <input type="text" id="registerFirstName" class="form-control" placeholder="First name">
+                      </div>
+                      <div class="col">
+                          <!-- Last name -->
+                          <input type="text" id="registerLastName" class="form-control" placeholder="Last name">
+                      </div>
+                  </div>
+              
+                  <!-- ID -->
+                  <input type="text" id="registerID" class="form-control mb-4" placeholder="ID">
+              
+                  <!-- Password -->
+                  <input type="password" id="registerPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+                  <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                      At least 8 characters and 1 digit
+                  </small>
+              
+                  
+              
+                  <!-- Sign up button -->
+                  <button onclick="openModal('id')" class="btn btn-info btn-block" type="button">Sign in</button>
+              
+                  
+              
+                  <!-- Social register -->
+                  <p>or sign up with:</p>
+              
+                  <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+                  <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+                  <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+                  <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+              
+                  <hr>
+              
+                  <!-- Terms of service -->
+                  <p>By clicking
+                      <em>Sign up</em> you agree to our
+                      <a href="" target="_blank">terms of service</a>
+              
+                </form>
+                <p id="msg" style="text-align: center; display: none;">반갑습니다. 김동환님</p>
+                <p id="err" style="text-align: center; display: none;">로그인 실패</p>
                 <!-- Default form login -->
                 
 

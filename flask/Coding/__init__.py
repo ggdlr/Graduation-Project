@@ -8,11 +8,12 @@ app.debug = True
 
 @app.route('/')
 def mainDisplay():
-    return render_template('login.html')
+    username = 'Kim donghwan'
+    return render_template('login.html', username=username)
 
-@app.route('/register')
-def registerPage():
-    return render_template('register.html')
+# @app.route('/register')
+# def registerPage():
+#     return render_template('register.html')
 
 @app.route('/create')
 def createPage():
@@ -21,6 +22,7 @@ def createPage():
 @app.route('/editor')
 def editorPage():
     return render_template('editor.html')
+
 # @app.before_request
 
 # def before_request():

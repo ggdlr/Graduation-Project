@@ -80,20 +80,16 @@
                                 <h3 class="font-weight-bold dark-grey-text mb-3">Choose OS</h3>
                                 <p class="text-muted">
                                     <!-- Default inline 1-->
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <form action="">
-                                            <input type="radio" name = "os-answer"class="custom-control-input" id="centosSeletced">
-                                            <label class="custom-control-label" for="defaultInline1">CentOS</label>
+                                    <div >
+                                        <form action="/editor.html">
+                                            <input type="radio" name="os" class="custom-control-input" id="centosSeletced" value="CentOS">
+                                            <label class="custom-control-label" for="centosSeletced">CentOS</label>
+                                            <input type="radio" name="os" class="custom-control-input" id="ubuntuSelected" value="Ubuntu" checked="true">
+                                            <label class="custom-control-label" for="ubuntuSelected">Ubuntu</label>
                                         </form>
                                     </div>
                                     
                                     <!-- Default inline 2-->
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <form action="">
-                                            <input type="radio" name = "os-answer"class="custom-control-input" id="ubuntuSelected" checked="true">
-                                            <label class="custom-control-label" for="defaultInline2">Ubuntu</label>
-                                        </form>
-                                    </div>
                                 </p>
                             </div>
                             </li>
@@ -106,16 +102,11 @@
                                 <p class="text-muted">
                                     <!-- Default inline 1-->
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <form action="">
-                                            <input type="radio" name = "lang-answer" class="custom-control-input" id="cCppSelected" checked="true">
-                                            <label class="custom-control-label" for="defaultInline3" seleted>C/C++</label>
-                                            
-                                        </form>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <form action="">
-                                            <input type="radio" name = "lang-answer" class="custom-control-input" id="pythonSelected">
-                                            <label class="custom-control-label" for="defaultInline3">Python3</label>
+                                        <form action="/editor.html">
+                                            <input type="radio" name = "language" class="custom-control-input" id="cCppSelected" checked="true">
+                                            <label class="custom-control-label" for="cCppSelected" seleted>C/C++</label>
+                                            <input type="radio" name = "language" class="custom-control-input" id="pythonSelected">
+                                            <label class="custom-control-label" for="pythonSelected">Python3</label>
                                         </form>
                                     </div>
                                 </p>

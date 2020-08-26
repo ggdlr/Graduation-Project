@@ -78,15 +78,15 @@
               <!--Card content-->
               <div class="card-body">
                 <!-- Default form login -->
-                <form id="loginForm" class="text-center border border-light p-5" onsubmit="return checkLogin()" method="post">
+                <form id="loginForm" class="text-center border border-light p-5" action="/login" method="post">
 
                   <p class="h4 mb-4">Sign in</p>
 
                   <!-- Id -->
-                  <input type="text" id="loginID" class="form-control mb-4" placeholder="ID">
+                  <input type="text" id="id" name="id" class="form-control mb-4" placeholder="ID">
 
                   <!-- Password -->
-                  <input type="password" id="loginPassword" class="form-control mb-4" placeholder="Password">
+                  <input type="password" id="password" name="password" class="form-control mb-4" placeholder="Password">
 
                   <div class="d-flex justify-content-around">
                       <div>
@@ -103,7 +103,7 @@
                   </div>
 
                   <!-- Sign in button -->
-                  <button class="btn btn-info btn-block my-4">Sign in</button>
+                  <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
 
                   <!-- Register -->
                   <p>Not a member?
@@ -167,6 +167,10 @@
                       <em>Sign up</em> you agree to our
                       <a href="" target="_blank">terms of service</a>
               
+                </form>
+                <form action="{{ url_for('login') }}" method="post">
+                  <input type="text" name="projectFilePath">
+                  <input type="submit">
                 </form>
                 <p id="msg" style="text-align: center; display: none;">반갑습니다. {{username}}님</p>
                 <p id="err" style="text-align: center; display: none;">로그인 실패</p>

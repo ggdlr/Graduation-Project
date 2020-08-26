@@ -101,9 +101,11 @@ def complete():
 def createPage():
     return render_template('create.html')
 
-@app.route('/editor')
+@app.route('/editor', methods=['GET', 'POST'])
 def editorPage():
-    return render_template('editor.html')
+    os = request.form['os']
+    language = request.form['language']
+    return render_template('editor.html', os=os, language=language)
 
 @app.route('/test')
 def test():

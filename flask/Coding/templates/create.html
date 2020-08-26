@@ -66,60 +66,56 @@
                     </style>
                     <h3 class="font-weight-bold text-center dark-grey-text pb-2">Create Your Own Environment</h3>
                     <hr class="w-header my-4">
-                    <p class="lead text-center text-muted pt-2 mb-5">사용할 OS와 언어를 고르세요.</p>
+                    <form action="/editor" method="post">
+                        <p class="lead text-center text-muted pt-2 mb-5">사용할 OS와 언어를 고르세요.</p>
                 
-                    <div class="row align-items-center">
+                            <div class="row align-items-center">
+                            
+                                <div class="col-lg-6 mb-4">
+                                <ol class="step pl-0">
+                                    <li class="step-element pb-0">
+                                    <div class="step-number">
+                                        <span class="number">1</span>
+                                    </div>
+                                    <div class="step-excerpt">
+                                        <h3 class="font-weight-bold dark-grey-text mb-3">Choose OS</h3>
+                                        <p class="text-muted">
+                                           
+                                            
+                                            <input type="radio" name="os" id="centos" value="centos">
+                                            <label for="centos">CentOS</label>
+                                            <input type="radio" name="os" id="ubuntu" value="ubuntu" checked="true">
+                                            <label for="ubuntu">Ubuntu</label>
+                                            
+                                        </p>
+                                    </div>
+                                    </li>
+                                    <li class="step-element pb-0">
+                                    <div class="step-number">
+                                        <span class="number">2</span>
+                                    </div>
+                                    <div class="step-excerpt">
+                                        <h3 class="font-weight-bold dark-grey-text mb-3">Choose Language</h3>
+                                        <p class="text-muted">
+                                           
+                                            <input type="radio" name="language" id="ccpp" value="ccpp" checked="true">
+                                            <label for="ccpp">C/C++</label>
+                                            <input type="radio" name="language" id="python" value="python">
+                                            <label for="python">Python3</label>
+                                        
+                                            
+                                        </p>
+                                    </div>
+                                    </li>
+                                </ol>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <button type="submit">submit</button>
+                            </div>
+                    </form>
                     
-                        <div class="col-lg-6 mb-4">
-                        <ol class="step pl-0">
-                            <li class="step-element pb-0">
-                            <div class="step-number">
-                                <span class="number">1</span>
-                            </div>
-                            <div class="step-excerpt">
-                                <h3 class="font-weight-bold dark-grey-text mb-3">Choose OS</h3>
-                                <p class="text-muted">
-                                    <!-- Default inline 1-->
-                                    <div >
-                                        <form action="/editor.html">
-                                            <input type="radio" name="os" class="custom-control-input" id="centosSeletced" value="CentOS">
-                                            <label class="custom-control-label" for="centosSeletced">CentOS</label>
-                                            <input type="radio" name="os" class="custom-control-input" id="ubuntuSelected" value="Ubuntu" checked="true">
-                                            <label class="custom-control-label" for="ubuntuSelected">Ubuntu</label>
-                                        </form>
-                                    </div>
-                                    
-                                    <!-- Default inline 2-->
-                                </p>
-                            </div>
-                            </li>
-                            <li class="step-element pb-0">
-                            <div class="step-number">
-                                <span class="number">2</span>
-                            </div>
-                            <div class="step-excerpt">
-                                <h3 class="font-weight-bold dark-grey-text mb-3">Choose Language</h3>
-                                <p class="text-muted">
-                                    <!-- Default inline 1-->
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <form action="/editor.html">
-                                            <input type="radio" name = "language" class="custom-control-input" id="cCppSelected" checked="true">
-                                            <label class="custom-control-label" for="cCppSelected" seleted>C/C++</label>
-                                            <input type="radio" name = "language" class="custom-control-input" id="pythonSelected">
-                                            <label class="custom-control-label" for="pythonSelected">Python3</label>
-                                        </form>
-                                    </div>
-                                </p>
-                            </div>
-                            </li>
-                        </ol>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <form action="">
-                            <input type="submit" value="Submit">
-                        </form>
-                    </div>
+                    
                     
                 </section>
             <!-- </div> -->

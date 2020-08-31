@@ -1,61 +1,67 @@
-from flask import Flask, g, render_template, Markup, request
+from flask import Flask, g, render_template, Markup, request, jsonify
 import paramiko
 import time
 import os
 import subprocess
 import requests
+from Coding import ssh_vm
+# ssh_vm.Ssh(server,name,pasw)
 
 app = Flask(__name__)
 app.debug = True
+# userServer = "192.168.0.150"
+# userName = "root"
+# userPassword = "whfdjqrhkwp"
+# connection = ssh_vm.Ssh(userServer, userName, userPassword)
 # app.jinja_env.trim.blocks = True
 
-class Ssh:
-    Shell = None
-    client = None
-    transport = None
+# class Ssh:
+#     Shell = None
+#     client = None
+#     transport = None
 
-    def __init__(self, address, username, password):
-        print("Connecting to server on ip", str(address) + ".")
-        self.client = paramiko.client.SSHClient()
-        self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy)
-        self.client.connect(address, username=username, password=password)
-        self.transport = paramiko.Transport((address, 22))
-        self.transport.connect(username=username, password=password)
-        self.sftp = paramiko.SFTPClient.from_transport(self.transport)
+#     def __init__(self, address, username, password):
+#         print("Connecting to server on ip", str(address) + ".")
+#         self.client = paramiko.client.SSHClient()
+#         self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy)
+#         self.client.connect(address, username=username, password=password)
+#         self.transport = paramiko.Transport((address, 22))
+#         self.transport.connect(username=username, password=password)
+#         self.sftp = paramiko.SFTPClient.from_transport(self.transport)
 
-    def close_connection(self):
-            if self.client is not None:
-                self.client.close()
-                self.sftp.close()
-                self.transport.close()
+#     def close_connection(self):
+#             if self.client is not None:
+#                 self.client.close()
+#                 self.sftp.close()
+#                 self.transport.close()
 
-    def open_shell(self):
-        self.Shell = self.client.invoke_shell() 
+#     def open_shell(self):
+#         self.Shell = self.client.invoke_shell() 
 
-    """def check_exist(self):
-        self.Shell.send("isfile")
-        """
-    def mkfile_shell(self,file_name):
-        if self.Shell:
-            self.Shell.send("touch " + file_name + "\n")
+#     """def check_exist(self):
+#         self.Shell.send("isfile")
+#         """
+#     def mkfile_shell(self,file_name):
+#         if self.Shell:
+#             self.Shell.send("touch " + file_name + "\n")
 
 
-    def send_shell(self, command):
-        if self.Shell:
-            self.Shell.send(command + "\n")
-        else:
-            print("Shell not opened.")
+#     def send_shell(self, command):
+#         if self.Shell:
+#             self.Shell.send(command + "\n")
+#         else:
+#             print("Shell not opened.")
 
-    def print_result(self):
-        output = self.Shell.recv(65535).decode("utf-8")
-        return output
+#     def print_result(self):
+#         output = self.Shell.recv(65535).decode("utf-8")
+#         return output
     
-    def create_file(self):
-        ftp = self.client.open_sftp()
-        my_file = ftp.file('/home/test1.py', 'w')
-        my_file.write('print("Hello world")')
-        my_file.flush()
-        ftp.close()
+#     def create_file(self):
+#         ftp = self.client.open_sftp()
+#         my_file = ftp.file('/home/test1.py', 'w')
+#         my_file.write('print("Hello world")')
+#         my_file.flush()
+#         ftp.close()
 
 url = 'http://192.168.0.96:8080/client/api'
 
@@ -97,6 +103,25 @@ def complete():
 # def registerPage():
 #     return render_template('register.html')
 
+
+
+
+# For AJAX testing 
+
+@app.route('/_add_numbers', methods=['GET', 'POST'])
+def add_numbers():
+    a = request.args.get('a', 0, type=int)
+    b = request.args.get('b', 0, type=int)
+    return jsonify(result=a + b)
+
+@app.route('/ajaxtest')
+def ajax():
+    return render_template('ajaxtest.html')
+
+
+
+
+
 @app.route('/create')
 def createPage():
     return render_template('create.html')
@@ -105,7 +130,14 @@ def createPage():
 def editorPage():
     os = request.form['os']
     language = request.form['language']
+    
     return render_template('editor.html', os=os, language=language)
+
+@app.route('/arrayTest')
+def arrayTest():
+    os=['ubuntu', 'centos', 'window', 'maxos']
+    len_os = len(os)
+    return render_template('arraytest.html', os=os, len_os=len_os)
 
 @app.route('/test')
 def test():
@@ -129,6 +161,11 @@ def test2():
     userName = request.form['userName']
     userEmail = request.form['userEmail']
     return render_template('test2.html', userName=userName, userEmail=userEmail)
+
+@app.route('/editortest')
+def editortest():
+    lst = ['hello.c', 'hello.h', 'main.c']
+    return render_template('editorpageTest.html', files=lst)
 # @app.before_request
 
 # def before_request():

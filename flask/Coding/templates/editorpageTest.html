@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{{ url_for('static', filename='css/mdb.min.css')}}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{{ url_for('static', filename='css/style.min.css')}}" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        
+        /* html,
+        body,
+        header,
+        .view {
+            height: 100%;
+        }
+        .custom-menu {
+            z-index:1000;
+            position: absolute;
+            background-color:#C0C0C0;
+            border: 1px solid black;
+            padding: 2px;
+        }
+        .contextmenu {
+            display: none;
+            position: absolute;
+            width: 200px;
+            margin: 0;
+            padding: 0;
+            background: #FFFFFF;
+            border-radius: 5px;
+            list-style: none;
+            box-shadow:
+                0 15px 35px rgba(50,50,90,0.1),
+                0 5px 15px rgba(0,0,0,0.07);
+            overflow: hidden;
+            z-index: 999999;
+        }
+        .contextmenu li {
+            border-left: 3px solid transparent;
+            transition: ease .2s;
+        }
+        .contextmenu li:hover {
+            background: #CE93D8;
+            border-left: 3px solid #9C27B0;
+        }
+
+        .contextmenu li:hover a {
+            color: #FFFFFF;
+        } */
+        .File {
+            margin-left:15px;
+        }
+    </style>
+    <!-- <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script> -->
+    <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- <ul class="contextmenu">
+        <li onclick="newFile()" class="forFolder">New File</li>
+        <li onclick="renameFile()">Rename</li>
+        <li onclick="deleteFile()">Delete</li>
+    </ul> -->
+    <button type="button" onclick="createFile()">파일 추가</button>
+    <button type="button" onclick="renameFile()">Rename</button>
+    <button type="button" onclick="deleteFile()">Delete</button>
+    
+    <div class="Navigation" id="test">파일 목록
+        <div class="Folder" id="defaultFolder"><i class="far fa-folder"></i><b>username</b>
+            <!-- <div class="File" id="file1" onmouseover="enShadow(this)" onmouseout="dShadow(this)"><i class="far fa-file"></i>file1</div>
+            <div class="File" id="file2" onmouseover="enShadow(this)" onmouseout="dShadow(this)"><span class="far fa-file"></span>test1</div> -->
+            
+        </div>
+        
+    </div>
+    
+</body>
+<script></script>
+<script>
+globalId = $(this).attr('id');
+    var globalId;
+
+    function createFile(){
+        var newFileName = prompt("FileName: ");
+        var div = document.createElement("DIV");
+        div.innerHTML = '<i class="far fa-file"></i>' + newFileName;
+        div.id = newFileName;
+        div.className = "File";
+        div.onmouseover= function () {
+            this.style.backgroundColor = "#efefef";
+        };
+        div.onmouseout = function () {
+            this.style.backgroundColor = "#ffffff";
+        };
+        div.onclick = function(){
+            // globalId = this.attr('id');
+            globalId = this.getAttribute('id');
+            // alert(globalId);
+        };
+        document.getElementById("defaultFolder").appendChild(div);
+    }
+
+    function createFileFromDB(fileName){
+        // var newFileName = prompt("FileName: ");
+        var div = document.createElement("DIV");
+        div.innerHTML = '<i class="far fa-file"></i>' + fileName;
+        div.id = fileName;
+        div.className = "File";
+        div.onmouseover= function () {
+            this.style.backgroundColor = "#efefef";
+        };
+        div.onmouseout = function () {
+            this.style.backgroundColor = "#ffffff";
+        };
+        div.onclick = function(){
+            // globalId = this.attr('id');
+            globalId = this.getAttribute('id');
+            // alert(globalId);
+        };
+        document.getElementById("defaultFolder").appendChild(div);
+    }
+    {% for file in files %}
+        var fileNameDB = "{{ file }}"
+        createFileFromDB(fileNameDB);
+    {% endfor %}
+    function renameFile(){
+        var newName = prompt("Rename: ");
+        document.getElementById(globalId).innerHTML = '<i class="far fa-file"></i>' + newName;
+    }
+
+    function deleteFile(){
+        document.getElementById(globalId).remove();
+    }
+
+    // $(document).ready(function(){
+    //     $(".File").click(function(){
+    //         globalId = $(this).attr('id');
+    //         alert(glabalId);
+    //     })
+    // });
+    // document.getElementsByClassName("File").addEventListener("click", myFunction());
+
+    // function myFunction() {
+    //     alert(globalId);
+    // }
+    
+    // function newFile(){
+    //     var newFileName = prompt("FileName: ");
+    //     var div = document.createElement("DIV");
+    //     div.innerHTML = '<i class="far fa-file"></i>' + newFileName;
+    //     div.id = newFileName;
+    //     div.className = "File";
+    //     document.getElementById(globalId).appendChild(div);
+    // }
+
+    // function renameFolder(){
+    //     // eId = '#'+golbalId;
+    //     var newName = prompt("Rename: ");
+    //     document.getElementById(globalId).innerHTML = newName;
+    // }
+
+    // function deleteFolder(){
+    //     eId = '#'+globalId;
+    //     $(eId).remove();
+    // }
+    // $(document).bind("contextmenu", function(event) { 
+    //     event.preventDefault();
+    //     $("<div><div class='custom-menu'>Custom menu</div></div>")
+    //         .appendTo("body")
+    //         .css({top: event.pageY + "px", left: event.pageX + "px"});
+    // }).bind("click", function(event) {
+    //     $("div.custom-menu").hide();
+    // });
+
+    // $(document).ready(function(){
+    //     // $("div.Folder").on("click", function(){});
+    //     $("div.Folder").click(function(){
+    //         // window.alert($(this).id);
+    //         $(this).css("background-color", "red");
+    //         // $(this).hide();
+    //     });
+    // });
+    // jQuery(document).ready(function($){
+    //     $('body').prepend('<h1>hello world</h1>')
+    // });
+    // function createFolderT(){ 
+    //     var newFileName = prompt("FileName: ");
+    //     var div = document.createElement("DIV");
+    //     div.innerHTML = '<i class="far fa-file"></i>' + newFileName;
+    //     div.id = newFileName;
+    //     div.className = "File";
+    //     document.getElementById("defaultFolder").appendChild(div);
+    // }
+    
+    // function createFolder(id, folderName){
+    //     var newFolder = document.createElement("DIV");
+    //     newFolder.innerHTML = folderName;
+    //     newFolder.class = "folder";
+    //     newFolder.id = folderName;
+    //     document.getElementById(id).appendChild(newFolder);
+    // }
+
+    
+    
+    // usages
+    // getInfo(this)
+    // function getId(elmnt){
+    //     // 좌, 우 마우스 클릭 했을 때 해당 엘리멘트의 속성 가져오기
+    //     // 이름 넣을 때 JS Output -> window.alert 만약에 입력이 가능하다면
+    //     return elmnt.id;
+        
+    // }
+    //highlighting function
+    // $(document).ready(function(){
+    //     $(".Folder").mouseenter(function(){
+    //         $(this).css("background-color","#efefef");
+    //         $(".Folder.File").css("background-color","#ffffff");
+    //     });
+    //     $(".Folder").mouseleave(function(){
+    //         $(this).css("background-color","#ffffff");
+    //     });
+    //     $(".File").mouseenter(function(){
+    //         $(this).css("background-color","#efefef");
+    //     });
+    //     $(".File").mouseleave(function(){
+    //         $(this).css("background-color","#ffffff");
+    //     });
+    // });
+
+    // $("div.File").on({
+    //     mouseenter: function(){
+    //         $(this).css("background-color", "#efefef");
+    //     },
+    //     mouseleave: function(){
+    //         $(this).css("background-color", "#ffffff");
+    //     },
+    //     click: function(){
+    //         $(this).css("background-color", "yellow");
+    //     }
+    // });
+
+    // 오른쪽 클릭 했을 때 메뉴 나오게 하는거
+    // delete -> hide로 처리 
+    // folder 하위 file 토글 wip
+    // $(document).ready(function(){
+    //     $("div.Folder").click(function(){
+    //         // class div.Folder 하위 파일들을 fade in out 하고싶음 -> how?
+    //         $(this).children().slideToggle();
+    //         // children(p.classname)
+    //         // .find("span").something 모든 span을 찾아서 
+    //     });
+    // });
+
+    //For Folder
+    // $(document).ready(function(){
+    //     $(".Folder").on({
+    //         click: function(event){
+    //                 $(this).children().slideToggle();
+    //         },
+    //         mouseenter: function(){
+    //             $(this).css("background-color", "#efefef");
+    //             $(this).children().css("background-color", "#ffffff");
+    //         },
+    //         mouseleave: function(){
+    //             $(this).css("background-color", "#ffffff");
+    //         },
+    //         contextmenu: function(e){
+    //             globalId = $(this).attr('id');
+    //             //Get window size:
+    //             var winWidth = $(document).width();
+    //             var winHeight = $(document).height();
+    //             //Get pointer position:
+    //             var posX = e.pageX;
+    //             var posY = e.pageY;
+    //             //Get contextmenu size:
+    //             var menuWidth = $(".contextmenu").width();
+    //             var menuHeight = $(".contextmenu").height();
+    //             //Security margin:
+    //             var secMargin = 10;
+    //             //Prevent page overflow:
+    //             if(posX + menuWidth + secMargin >= winWidth
+    //             && posY + menuHeight + secMargin >= winHeight){
+    //             //Case 1: right-bottom overflow:
+    //             posLeft = posX - menuWidth - secMargin + "px";
+    //             posTop = posY - menuHeight - secMargin + "px";
+    //             }
+    //             else if(posX + menuWidth + secMargin >= winWidth){
+    //             //Case 2: right overflow:
+    //             posLeft = posX - menuWidth - secMargin + "px";
+    //             posTop = posY + secMargin + "px";
+    //             }
+    //             else if(posY + menuHeight + secMargin >= winHeight){
+    //             //Case 3: bottom overflow:
+    //             posLeft = posX + secMargin + "px";
+    //             posTop = posY - menuHeight - secMargin + "px";
+    //             }
+    //             else {
+    //             //Case 4: default values:
+    //             posLeft = posX + secMargin + "px";
+    //             posTop = posY + secMargin + "px";
+    //             };
+    //             //Display contextmenu:
+    //             $(".contextmenu").css({
+    //             "left": posLeft,
+    //             "top": posTop
+    //             }).show();
+    //             //Prevent browser default contextmenu.
+    //             return false;
+    //         }
+    //     })
+    // });
+
+    //For File
+    // $(document).ready(function(){
+    //     $(".File").on({
+    //         click: function(event){
+    //             globalId = $(this).attr('id');
+    //             alert("Right mouse click a file");
+    //         },
+    //         mouseenter: function(){
+    //             $(this).css("background-color", "#efefef");
+    //             $(this).parent().css("background-color", "#ffffff");
+    //         },
+    //         mouseleave: function(){
+    //             $(this).css("background-color", "#ffffff");
+    //         },
+    //         contextmenu: function(e){
+    //             globalId = $(this).attr('id');
+    //             //Get window size:
+    //             var winWidth = $(document).width();
+    //             var winHeight = $(document).height();
+    //             //Get pointer position:
+    //             var posX = e.pageX;
+    //             var posY = e.pageY;
+    //             //Get contextmenu size:
+    //             var menuWidth = $(".contextmenu").width();
+    //             var menuHeight = $(".contextmenu").height();
+    //             //Security margin:
+    //             var secMargin = 10;
+    //             //Prevent page overflow:
+    //             if(posX + menuWidth + secMargin >= winWidth
+    //             && posY + menuHeight + secMargin >= winHeight){
+    //             //Case 1: right-bottom overflow:
+    //             posLeft = posX - menuWidth - secMargin + "px";
+    //             posTop = posY - menuHeight - secMargin + "px";
+    //             }
+    //             else if(posX + menuWidth + secMargin >= winWidth){
+    //             //Case 2: right overflow:
+    //             posLeft = posX - menuWidth - secMargin + "px";
+    //             posTop = posY + secMargin + "px";
+    //             }
+    //             else if(posY + menuHeight + secMargin >= winHeight){
+    //             //Case 3: bottom overflow:
+    //             posLeft = posX + secMargin + "px";
+    //             posTop = posY - menuHeight - secMargin + "px";
+    //             }
+    //             else {
+    //             //Case 4: default values:
+    //             posLeft = posX + secMargin + "px";
+    //             posTop = posY + secMargin + "px";
+    //             };
+    //             //Display contextmenu:
+    //             $(".contextmenu").css({
+    //             "left": posLeft,
+    //             "top": posTop
+    //             }).show();
+    //             $(".forFolder").css("display", "none");
+    //             //Prevent browser default contextmenu.
+    //             return false;
+    //         }
+    //     })
+    // });
+
+    // $(document).ready(function(){
+    //     //Show contextmenu:
+    //     $(document).contextmenu(function(e){
+    //     //Get window size:
+    //     var winWidth = $(document).width();
+    //     var winHeight = $(document).height();
+    //     //Get pointer position:
+    //     var posX = e.pageX;
+    //     var posY = e.pageY;
+    //     //Get contextmenu size:
+    //     var menuWidth = $(".contextmenu").width();
+    //     var menuHeight = $(".contextmenu").height();
+    //     //Security margin:
+    //     var secMargin = 10;
+    //     //Prevent page overflow:
+    //     if(posX + menuWidth + secMargin >= winWidth
+    //     && posY + menuHeight + secMargin >= winHeight){
+    //     //Case 1: right-bottom overflow:
+    //     posLeft = posX - menuWidth - secMargin + "px";
+    //     posTop = posY - menuHeight - secMargin + "px";
+    //     }
+    //     else if(posX + menuWidth + secMargin >= winWidth){
+    //     //Case 2: right overflow:
+    //     posLeft = posX - menuWidth - secMargin + "px";
+    //     posTop = posY + secMargin + "px";
+    //     }
+    //     else if(posY + menuHeight + secMargin >= winHeight){
+    //     //Case 3: bottom overflow:
+    //     posLeft = posX + secMargin + "px";
+    //     posTop = posY - menuHeight - secMargin + "px";
+    //     }
+    //     else {
+    //     //Case 4: default values:
+    //     posLeft = posX + secMargin + "px";
+    //     posTop = posY + secMargin + "px";
+    //     };
+    //     //Display contextmenu:
+    //     $(".contextmenu").css({
+    //     "left": posLeft,
+    //     "top": posTop
+    //     }).show();
+    //     //Prevent browser default contextmenu.
+    //     return false;
+    // });
+    // //Hide contextmenu:
+    // $(document).click(function(){
+    //     $(".contextmenu").hide();
+    // });
+    
+</script>
+</html>
+
+<!-- $(".test").hide() # with class
+$("#test").hide() # with id 
+ready 문서로드 이전에 실행되지 않게 함
+$("tag").dblclick # double click
+
+code 입력창에 해당 되는 코드를 넣을 수 있음
+$("#btn3").click(function(){
+    $('#test3').val("Dolly Duck");
+})
+$("").remove();
+$("p").remove(".test")
+.empty(); 내용 지우는거
+
+-->

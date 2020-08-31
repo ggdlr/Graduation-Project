@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <!-- <script>
+        function test(){
+            var text_data = $('#item_id').val();
+            $.ajax({
+                type:'POST',
+                url: 'http://localhost:5000/_add_numbers',
+                data:{
+                    item_id:test_data
+                },
+                dataType:'JSON',
+                sucess:function(result){
+                    alert("result="+result);
+                    $('#a').html(result);
+                },
+                error:function(xtr, status, error){
+                    alert(xtr+":"+status+":"+error);
+                }
+            });
+        }
+    </script> -->
+    <script type=text/javascript>
+        $(function() {
+          $('a#calculate').bind('click', function() {
+            $.getJSON('http://127.0.0.1:5000/_add_numbers', {
+              a: $('input[name="a"]').val(),
+              b: $('input[name="b"]').val()
+            }, function(data) {
+              $("#result").text(data.result);
+            });
+            return false;
+          });
+        });
+      </script>
+      <h1>jQuery Example</h1>
+      <p><input type=text size=5 name=a> +
+         <input type=text size=5 name=b> =
+         <span id=result>?</span>
+      <p><a href=# id=calculate>calculate server side</a>
+    <!-- <p>검색하고자 하는 아이템을 입력하세요.</p>
+    <input type = "text" name="item_id" id="item_id"/>
+    <input type = "button" value = "데이터 요청" onclick="test()"/>
+    <h1 id ="a"></h1> -->
+</body>
+</html>

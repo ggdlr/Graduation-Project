@@ -11,10 +11,39 @@ It shows the list of codes that users have -->
         <div class="container">
             <div class="row wow fadeIn">
                 <h1>Here is for creating your own environment</h1>
-                <p>You are on {{os}} and able to use {{language}}</p>
+                <!-- <button type="button" onclick="document.getElementById('test').innerHTML = 'hello.c'">파일추가</button> -->
+                <p>{{os}}</p>
+                <!-- to do list를 작성해서 함수로 만들고 작성을 해야겠다.
+                drag & drop, 마우스 오른쪽 버튼 클릭(rename, delete, createfolder, createfile) -->
+                
+                <p id="test"></p>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    function createFolder(id, folderName){
+        var newFolder = document.createElement("DIV");
+        newFolder.innerHTML = folderName;
+        document.getElementById(id).appendChild(newFolder);
+    }
+
+    function createFile(id, fileName){
+        var newFile = document.createElement("DIV");
+        newFile.innerHTML = fileName;
+        document.getElementById(id).appendChild(newFile);
+    }
+    
+    // usages
+    // getInfo(this)
+    function getInfo(elmnt){
+        // 좌, 우 마우스 클릭 했을 때 해당 엘리멘트의 속성 가져오기
+        // 이름 넣을 때 JS Output -> window.alert 만약에 입력이 가능하다면
+        id = elmnt.id;
+        document.write(id);
+    }
+
+    // 오른쪽 클릭 했을 때 메뉴 나오게 하는거 
+</script>
 {% endblock %}

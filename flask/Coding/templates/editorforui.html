@@ -1,0 +1,128 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/mdb.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.min.css')}}" rel="stylesheet">
+    <style type="text/css">
+        html,
+        body,
+        header,
+        .view {
+          height: 100%;
+        }
+    
+        @media (max-width: 740px) {
+          html,
+          body,
+          header,
+          .view {
+            height: 1000px;
+          }
+        }
+    
+        @media (min-width: 800px) and (max-width: 850px) {
+          html,
+          body,
+          header,
+          .view {
+            height: 650px;
+          }
+        }
+        @media (min-width: 800px) and (max-width: 850px) {
+                  .navbar:not(.top-nav-collapse) {
+                      background: #3968c7!important;
+                  }
+        }
+        .box{
+            display: flex;
+        }
+        .File{
+            margin-left:15px;
+        }
+        .icon{
+            margin-right:10px;
+        }
+        i{
+            margin-right:2px;
+        }
+      </style>
+</head> -->
+    {% extends "base.html" %}
+
+    {% block main %}
+    <style>
+        .sidebar{
+            /* width: 20%; */
+            margin-top: 70px;
+            margin-left: 60px;
+            background-color:burlywood;
+        }
+        .box{
+            display: flex;
+        }
+        .File{
+            margin-left:15px;
+        }
+        .icon{
+            margin-right:10px;
+        }
+        i{
+            margin-right:2px;
+        }
+    </style>
+    <div style="display: flex;">
+    <header style="width:15%; text-align:left;">
+        <div class="sidebar">
+            <a class="logo-wrapper waves-effect">
+                <img src="static/img/computers.png" style="width:60px;height:60px;" class="img-fluid" alt="Coding">
+            </a>
+            <div class="row">
+                <span class="icon"><i class="far fa-edit" alt="Add File"></i>Create File</span>
+                <span class="icon"><i class="fas fa-pencil-alt"></i>Rename</span>
+                <span class="icon"><i class="far fa-trash-alt"></i>Delete</span>
+                
+            </div>
+            <div class="row">
+                -------------------------------------------------------
+            </div>
+            <div class="row">
+                <div class="Folder"><i class="far fa-folder"></i><b>username</b>
+                    <div class="File"><i class="far fa-file"></i>file1</div>
+                    <div class="File"><i class="far fa-file"></i>file2</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main style="width: 75%; background-color:darkcyan; text-align:right; margin-top:70px">
+    <!-- <main class="mt-5 pt-4"> -->
+        <div class="container">
+            <div class="row">
+                <!-- file tree view -->
+                
+                <!-- code input -->
+                <div class="col-sm-6" style="margin-right: 10px; margin-left: -30px">
+                    <div style="background-color:darkgray; text-align:left; width:80px"><i class="far fa-file"></i>filename
+                        
+                    </div>
+                    <textarea name="code" id="code" cols="70" rows="30" ></textarea>
+                </div>
+                <!-- output -->
+                <div class="col-sm-6" style="margin-left: 10px;">
+                    <div><i class="fas fa-play" ></i></div>
+                    <textarea name="output" id="output" cols="70" rows="30" style="background-color: black;"></textarea>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    </div>
+    {% endblock %}
+
+
+<!-- </html> -->
+

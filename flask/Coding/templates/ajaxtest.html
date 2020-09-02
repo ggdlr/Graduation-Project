@@ -40,15 +40,58 @@
             return false;
           });
         });
-      </script>
-      <h1>jQuery Example</h1>
-      <p><input type=text size=5 name=a> +
-         <input type=text size=5 name=b> =
-         <span id=result>?</span>
-      <p><a href=# id=calculate>calculate server side</a>
-    <!-- <p>검색하고자 하는 아이템을 입력하세요.</p>
-    <input type = "text" name="item_id" id="item_id"/>
-    <input type = "button" value = "데이터 요청" onclick="test()"/>
-    <h1 id ="a"></h1> -->
+        </script>
+        <h1>jQuery Example</h1>
+        <p><input type=text size=5 name=a> +
+            <input type=text size=5 name=b> =
+            <span id=result>?</span>
+        <p><a href=# id=calculate>calculate server side</a></p>
+
+        <p><a href=# id=apitest>api testing</a></p>
+        <span id="apitesting">?</span>
+        <div id="testdiv">for testing</div>
+        <button type="button" onclick="createFile()">파일 추가</button>
+
+        <script>
+            function createFile(){
+                var newFileName = prompt("FileName: ");
+                var div = document.createElement("DIV");
+                div.innerHTML = newFileName;
+                div.id = newFileName;
+                document.getElementById("testdiv").appendChild(div);
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:5000/api_test',
+                    data: {},
+                    success: function(){
+                        $("#apitesting").text("성공");
+                        alert("성공");
+                    }
+                })
+            }
+        </script>
+
+
+<!-- 
+function createFile(){
+    var newFileName = prompt("FileName: ");
+    var div = document.createElement("DIV");
+    div.innerHTML = '<i class="far fa-file"></i>' + newFileName;
+    div.id = newFileName;
+    div.className = "File";
+    div.onmouseover= function () {
+        this.style.backgroundColor = "#efefef";
+    };
+    div.onmouseout = function () {
+        this.style.backgroundColor = "#ffffff";
+    };
+    div.onclick = function(){
+        // globalId = this.attr('id');
+        globalId = this.getAttribute('id');
+        // alert(globalId);
+    };
+    document.getElementById("defaultFolder").appendChild(div);
+} -->
+
 </body>
 </html>

@@ -70,6 +70,10 @@ def mainDisplay():
     username = 'Kim donghwan'
     return render_template('login.html', username=username)
 
+@app.route('/uitest')
+def uitest():
+    return render_template('editorforui.html')
+    
 @app.route('/login', methods=['POST'])
 def login():
     userId = request.form['id']
@@ -108,6 +112,18 @@ def complete():
 
 # For AJAX testing 
 
+@app.route('/api_test', methods=['GET', 'POST'])
+def api_test():
+    # login_data = {'command':'login', 'username':'admin', 'password':'123456', 'response':'json'}
+    # user = requests.Session()
+    # req = user.post(url, data=login_data)
+    # print(req.json())
+    # status = req.status_code
+    # a = request.args.get('a', 0, type=string)
+    print("do something in a python function")
+    result = 3
+    return jsonify(result = result)
+
 @app.route('/_add_numbers', methods=['GET', 'POST'])
 def add_numbers():
     a = request.args.get('a', 0, type=int)
@@ -118,7 +134,9 @@ def add_numbers():
 def ajax():
     return render_template('ajaxtest.html')
 
-
+@app.route('/info')
+def info():
+    return render_template('info.html')
 
 
 
